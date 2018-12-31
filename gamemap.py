@@ -9,17 +9,17 @@ class Level(object):
 	def __init__(self, width, height):
 		self.height = height
 		self.width = width
-		self.map = []
+		self.array = []
 
 		h = []
 		for i in range(self.width):
 			h.append("dirt")
 		for i in range(self.height):
-			self.map.append(h)
+			self.array.append(h)
 
 
-	def print_map(self):
-		for h in self.map:
+	def print_array(self):
+		for h in self.array:
 			for i in h:
 				print(i, end=" ")
 			print()
@@ -42,7 +42,7 @@ class Map(object):
 
 levelOne = Level(10,10)
 
-levelOne.print_map()
+levelOne.print_array()
 
 grassTile = Tile("tiles/grass.png", "grass", 1, 3)
 
