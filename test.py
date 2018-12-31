@@ -11,7 +11,7 @@ message_log = "hello\nthis is a message\nthis is cool"
 
 TILESIZE  = 30
 MAPWIDTH  = 50
-MAPHEIGHT = 40
+MAPHEIGHT = 30
 
 game = Game(MAPWIDTH, MAPHEIGHT)
 
