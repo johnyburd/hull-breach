@@ -24,7 +24,7 @@ while True:
             pygame.quit()
             sys.exit()
 
-    tilemap = game.current_level()
+    tilemap = game.current_level().array
 
     for row in range(MAPHEIGHT):
         for column in range(MAPWIDTH):
