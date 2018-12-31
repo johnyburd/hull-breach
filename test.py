@@ -8,7 +8,7 @@ myfont = pygame.font.SysFont('Comic Sans MS', 40)
 
 message_log = "hello\nthis is a message\nthis is cool"
 
-TILESIZE  = 40
+TILESIZE  = 30
 MAPWIDTH  = 50
 MAPHEIGHT = 40
 
