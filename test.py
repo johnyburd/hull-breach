@@ -1,10 +1,10 @@
 import pygame, sys, random
-from tile_ids import tile_ids
 from game import Game
-import time
 from gamemap import Map
 from pygame.locals import *
 pygame.font.init()
+clock = pygame.time.Clock()
+
 myfont = pygame.font.SysFont('Comic Sans MS', 40)
 
 message_log = "hello\nthis is a message\nthis is cool"
@@ -17,9 +17,11 @@ game = Game(MAPWIDTH, MAPHEIGHT)
 
 pygame.init()
 screen = pygame.display.set_mode((MAPWIDTH*TILESIZE,MAPHEIGHT*TILESIZE))
-starttime=time.time()
+old_map = [[None for i in range(MAPWIDTH)] for j in range(MAPHEIGHT)]
 
+from tile_ids import tile_ids
 while True:
+    clock.tick(30)
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
@@ -31,17 +33,22 @@ while True:
             sys.exit()
 
     tilemap = game.current_level().array
+    dirty_tiles = []
 
     for row in range(MAPHEIGHT):
         for column in range(MAPWIDTH):
             #draw the resource at that position in the tilemap, using the correct image
-            screen.blit(tile_ids[tilemap[row][column]], (column*TILESIZE,row*TILESIZE))
+            if tilemap[row][column] != old_map[row][column]:
+                dirty_tiles.append(pygame.Rect(column * TILESIZE, row * TILESIZE, TILESIZE, TILESIZE))
+                screen.blit(tile_ids[tilemap[row][column]], (column*TILESIZE,row*TILESIZE))
             count = 0
-            for line in message_log.split('\n'):
-                textsurface = myfont.render(line, False, (0, 0, 0))
-                screen.blit(textsurface,(0,count))
-                count += 40
+            #for line in message_log.split('\n'):
+            #    textsurface = myfont.render(line, False, (0, 0, 0))
+            #    screen.blit(textsurface,(0,count))
+            #    count += 40
+    old_map = tilemap
 
     #update the display
-    pygame.display.update()
-    time.sleep(30.0 - ((time.time() - starttime) % 30.0))
+    #print(dirty_tiles)
+    pygame.display.update(dirty_tiles)
+    #time.sleep(30.0 - ((time.time() - starttime) % 30.0))
