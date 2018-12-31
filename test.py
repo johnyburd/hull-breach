@@ -22,6 +22,10 @@ starttime=time.time()
 while True:
 
     for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+                sys.exit()
         if event.type == QUIT:
             pygame.quit()
             sys.exit()

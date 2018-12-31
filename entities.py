@@ -29,4 +29,3 @@ class Entity(object):
 
 	def tick(self):
 		pass
-
