@@ -31,7 +31,8 @@ class Map(object):
 		self.levels = [level]
 		self.current_level = 0			#the level that the player is currently on
 
-	
+	def get_level(self):
+		return self.levels[self.current_level]
 
 		
 
