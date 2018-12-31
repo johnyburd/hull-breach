@@ -1,6 +1,7 @@
 import pygame, sys, random
 from tile_ids import tile_ids
 from game import Game
+import time
 from gamemap import Map
 from pygame.locals import *
 pygame.font.init()
@@ -16,6 +17,7 @@ game = Game(MAPWIDTH, MAPHEIGHT)
 
 pygame.init()
 screen = pygame.display.set_mode((MAPWIDTH*TILESIZE,MAPHEIGHT*TILESIZE))
+starttime=time.time()
 
 while True:
 
@@ -38,3 +40,4 @@ while True:
 
     #update the display
     pygame.display.update()
+    time.sleep(30.0 - ((time.time() - starttime) % 30.0))
