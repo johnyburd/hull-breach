@@ -34,18 +34,3 @@ class Map(object):
 
 	def get_level(self):
 		return self.levels[self.current_level]
-
-	
-
-
-
-		
-
-
-levelOne = Level(10,10)
-
-levelOne.print_array()
-
-grassTile = Tile("tiles/grass.png", "grass", 1, 3)
-
-print(grassTile.name)
