@@ -7,13 +7,13 @@ class Tile(Entity):
 
 class Level(object):
 	def __init__(self, width, height):
-		self.width = width
 		self.height = height
+		self.width = width
 		self.map = []
 
 		h = []
 		for i in range(self.width):
-			h.append(0)
+			h.append("dirt")
 		for i in range(self.height):
 			self.map.append(h)
 
@@ -26,12 +26,16 @@ class Level(object):
 
 class Map(object):
 	"""docstring for Map"""
-	def __init__(self):
-		level = Level(50,40)
+	def __init__(self, width, height):
+		level = Level(width,height)
 		self.levels = [level]
-		self.current_level = 0			#the level that the player is currently on
+		self.current_level = 0	#the level that the player is currently on
 
-	
+	def get_level(self):
+		return self.levels[self.current_level]
+
+
+
 
 		
 
