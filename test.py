@@ -13,10 +13,10 @@ COAL  = 3
 
 #a dictionary linking resources to textures
 textures =   {
-                DIRT   : pygame.image.load('dirt.png'),
-                GRASS : pygame.image.load('grass.png'),
-                WATER : pygame.image.load('water.png'),
-                COAL  : pygame.image.load('coal.png')
+                DIRT   : pygame.image.load('res/dirt.png'),
+                GRASS : pygame.image.load('res/grass.png'),
+                WATER : pygame.image.load('res/water.png'),
+                COAL  : pygame.image.load('res/coal.png')
             }
 
 #useful game dimensions
