@@ -16,29 +16,39 @@ MAPHEIGHT = 30
 game = Game(MAPWIDTH, MAPHEIGHT)
 
 pygame.init()
-screen = pygame.display.set_mode((MAPWIDTH*TILESIZE,MAPHEIGHT*TILESIZE))
+screen = pygame.display.set_mode((MAPWIDTH*TILESIZE,MAPHEIGHT*TILESIZE), pygame.RESIZABLE)
 old_map = [[None for i in range(MAPWIDTH)] for j in range(MAPHEIGHT)]
 
 from tile_ids import tile_ids
 while True:
     clock.tick(30)
+    #print(screen.get_width()) # 1500
+    #print(screen.get_height()) # 900
+    dirty_tiles = []
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 sys.exit()
-        if event.type == QUIT:
+        elif event.type == QUIT:
             pygame.quit()
             sys.exit()
+        elif event.type == pygame.VIDEORESIZE:
+            print(event.size)
+            old_screen = screen
+            #MAPWIDTH = int(event.w / 30)
+            #MAPHEIGHT = int(event.h / 30)
+            TILESIZE = min(event.w / MAPWIDTH, event.h / MAPHEIGHT)
+            screen = pygame.display.set_mode((event.w,event.h), pygame.RESIZABLE)
+            dirty_tiles.append(pygame.Rect(0,0, event.w, event.h))
 
     tilemap = game.current_level().array
-    dirty_tiles = []
 
     for row in range(MAPHEIGHT):
         for column in range(MAPWIDTH):
             #draw the resource at that position in the tilemap, using the correct image
-            if tilemap[row][column] != old_map[row][column]:
+            if tilemap[row][column] != old_map[row][column] or True:
                 dirty_tiles.append(pygame.Rect(column * TILESIZE, row * TILESIZE, TILESIZE, TILESIZE))
                 screen.blit(tile_ids[tilemap[row][column]], (column*TILESIZE,row*TILESIZE))
             count = 0
