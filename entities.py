@@ -15,6 +15,8 @@ class Entity(object):
 		self.condition = 100		# integer between 0,100; 100 is best condition, 0 is worst
 		self.damage = 1				# how much damage this entity does when wielded
 		self.inventory = []			# the items that this entity (person/creature/container) is holding
+		self.weight = 1				# how much the item weighs in pounds
+		self.age = 0				# how long the item's been around
 
 
 	def wield(self):
@@ -22,6 +24,9 @@ class Entity(object):
 			pass # TODO: make this do something
 
 		return False
+
+	def tick(self):
+		age += 1
 		
 	def die(self):
 		pass
@@ -33,6 +38,26 @@ class Entity(object):
 	def tick(self):
 		pass
 
+class Sword(object):
+	"""docstring for Sword"""
+	def __init__(self, name, x, y):
+		super().__init__()
+		self.walkable = True
+		self.whackable = False
+		self.wieldable = False
+		self.inventory = None
+		self.corroded = -1		# this number is the first tick at which the item was corroded
+								# if the item is not corroded, this number is -1
+
+	def tick(self):
+		if corroded > -1:
+			if self.age - self.corroded >= 1000:
+				self.die()
+
+	def die(self):
+		pass
+
+
 class Critter(Entity):
 	def __init__(self, name, x, y):
 		self.name = name
@@ -41,7 +66,7 @@ class Critter(Entity):
 		self.walkable = False
 		self.whackable = 1
 
-	def set_attributes(health, armor, strength, constitution, dexterity, intelligence, wisdom, charisma):
+	def set_attributes(health, weight, armor, strength, constitution, dexterity, intelligence, wisdom, charisma):
 		self.health = health
 		self.armor = armor
 		self.strength = strength
@@ -50,3 +75,6 @@ class Critter(Entity):
 		self.intelligence = intelligence
 		self.wisdom = wisdom
 		self.charisma = charisma
+
+	def die(self):
+		self.set_attributes(0,0,0,0,0,0,0,0)
