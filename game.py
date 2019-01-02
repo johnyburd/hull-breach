@@ -1,4 +1,5 @@
 from gamemap import Map
+from entities import *
 
 class Game(object):
 	"""width and height are the width and height of the starting level"""
@@ -12,3 +13,6 @@ class Game(object):
 	def tick(self):
 		for entity in self.entitylist:
 			entity.tick()
+
+	def move_player(self):
+		pass

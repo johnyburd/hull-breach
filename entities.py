@@ -8,7 +8,7 @@ class Entity(object):
 									# if this is 1 then the player can attack the entity manually
 									# if this is 2 then the player defaults to attacking the entity
 		self.wieldable = False		# if this is true then this item can be used as a weapon
-		self.wearable = False			# if this is true then this item can be worn as armor
+		self.wearable = False		# if this is true then this item can be worn as armor
 		self.x = x
 		self.y = y
 		self.modifier = ""
@@ -17,7 +17,6 @@ class Entity(object):
 		self.inventory = []			# the items that this entity (person/creature/container) is holding
 		self.weight = 1				# how much the item weighs in pounds
 		self.age = 0				# how long the item's been around
-
 
 	def wield(self):
 		if wieldable:
@@ -38,8 +37,20 @@ class Entity(object):
 	def tick(self):
 		pass
 
-class Sword(object):
-	"""docstring for Sword"""
+class Character(Entity):
+	"""Playable characters"""
+	def __init__(self, name, type, x, y):
+		super().__init__(name, x, y)
+		self.type = type
+		self.walkable = False
+		
+		if self.type == "Thief":
+			self.weight = 160
+			self.inventory = []
+
+
+class Knife(object):
+	"""docstring for Knife"""
 	def __init__(self, name, x, y):
 		super().__init__()
 		self.walkable = True
