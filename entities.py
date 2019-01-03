@@ -7,6 +7,9 @@ class Entity(object):
 		self.whackable = 0			# if this is 0 then the player cannot attack this entity
 									# if this is 1 then the player can attack the entity manually
 									# if this is 2 then the player defaults to attacking the entity
+		self.satiation = -1			# represents how much this item removes from hunger if eaten
+									# if satiation is -1, then the item cannot be eaten
+		self.hunger = 0				# 0 is the minimum hunger, 100 is max
 		self.wieldable = False		# if this is true then this item can be used as a weapon
 		self.wearable = False		# if this is true then this item can be worn as armor
 		self.x = x
@@ -44,7 +47,7 @@ class Character(Entity):
 		self.type = type
 		self.walkable = False
 		
-		if self.type == "Thief":
+		if self.type.lower() == "thief":
 			self.weight = 160
 			self.inventory = []
 
@@ -86,6 +89,12 @@ class Critter(Entity):
 		self.intelligence = intelligence
 		self.wisdom = wisdom
 		self.charisma = charisma
+
+	def eat(self, item):
+		if item.satiation == -1:
+			return False
+		self.hunger -= item.satiation
+		return True
 
 	def die(self):
 		self.set_attributes(0,0,0,0,0,0,0,0)
