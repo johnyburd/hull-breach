@@ -16,6 +16,8 @@ class Game(object):
 
 		self.player = Character("Frank", "thief", width / 2, height / 2)
 
+		self.entitylist[self.player.y][self.player.x] = 'guy'
+
 	def entity_at(self, x, y):
 		return entitylist[y][x]
 
