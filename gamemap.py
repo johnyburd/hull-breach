@@ -11,10 +11,17 @@ class Level(object):
 		self.height = height
 		self.width = width
 		self.array = []
+		self.entitylist = []
+
+		for i in range(self.width):
+			h.append("dagger")
+		for i in range(self.height):
+			self.entitylist.append(h)
+
 
 		h = []
 		for i in range(self.width):
-			h.append("dirt")
+			h.append("dirt") if random.randint(0,10) == 1 else h.append("grass")
 		for i in range(self.height):
 			self.array.append(h)
 

@@ -5,14 +5,7 @@ class Game(object):
 	"""width and height are the width and height of the starting level"""
 	def __init__(self, width, height):
 		self.mapt = Map(width, height)
-		self.entitylist = []
 
-
-		h = []
-		for i in range(self.width):
-			h.append("dagger")
-		for i in range(self.height):
-			self.entitylist.append(h)
 
 		self.player = Character("Frank", "thief", width / 2, height / 2)
 
