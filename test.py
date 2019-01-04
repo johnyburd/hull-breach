@@ -38,6 +38,14 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 sys.exit()
+            elif event.key == pygame.K_LEFT:
+                game.move_player('w')
+            elif event.key == pygame.K_RIGHT:
+                game.move_player('e')
+            elif event.key == pygame.K_DOWN:
+                game.move_player('s')
+            elif event.key == pygame.K_UP:
+                game.move_player('n')
         elif event.type == QUIT:
             pygame.quit()
             sys.exit()
