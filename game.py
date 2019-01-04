@@ -13,6 +13,7 @@ class Game(object):
 	def entity_at(self, x, y):
 		return entitylist[y][x]
 
+	@property
 	def current_level(self):
 		return self.mapt.get_level()
 
