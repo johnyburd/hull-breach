@@ -20,8 +20,12 @@ screen = pygame.display.set_mode((MAPWIDTH*TILESIZE,MAPHEIGHT*TILESIZE), pygame.
 old_map = [[None for i in range(MAPWIDTH)] for j in range(MAPHEIGHT)]
 
 from tile_ids import tile_ids, entity_ids
-from tile_ids import tile_ids as scaled_tile_ids
-from tile_ids import entity_ids as scaled_entity_ids
+scaled_tile_ids = {}
+scaled_entity_ids = {}
+for k, i in tile_ids.items():
+    scaled_tile_ids[k] = pygame.transform.scale(i, (int(TILESIZE), int(TILESIZE)))
+for k, i in entity_ids.items():
+    scaled_entity_ids[k] = pygame.transform.scale(i, (int(TILESIZE), int(TILESIZE)))
 
 while True:
     clock.tick(30)
@@ -65,10 +69,10 @@ while True:
                 screen.blit(scaled_entity_ids[entitymap[row][column]], (column*TILESIZE,row*TILESIZE))
                 dirty_tiles.append(pygame.Rect(column * TILESIZE, row * TILESIZE, TILESIZE, TILESIZE))
             count = 0
-            #for line in message_log.split('\n'):
-            #    textsurface = myfont.render(line, False, (0, 0, 0))
-            #    screen.blit(textsurface,(0,count))
-            #    count += 40
+            for line in message_log.split('\n'):
+                textsurface = myfont.render(line, False, (0, 0, 0))
+                screen.blit(textsurface,(0,count))
+                count += 40
     old_map = tilemap
 
     #update the display
