@@ -25,6 +25,9 @@ class Level(object):
 		for i in range(self.height):
 			self.array.append(h)
 
+	def set_entity(self, x, y, entity):
+		self.entitylist[y][x] = entity
+		return True
 
 	def print_array(self):
 		for h in self.array:

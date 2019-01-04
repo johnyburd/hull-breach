@@ -6,10 +6,9 @@ class Game(object):
 	def __init__(self, width, height):
 		self.mapt = Map(width, height)
 
-
 		self.player = Character("Frank", "thief", width / 2, height / 2)
 
-		self.entitylist[self.player.y][self.player.x] = 'guy'
+		self.mapt.levels[0].set_entity(self.player.x, self.player.y, self.player)
 
 	def entity_at(self, x, y):
 		return entitylist[y][x]
