@@ -20,6 +20,9 @@ screen = pygame.display.set_mode((MAPWIDTH*TILESIZE,MAPHEIGHT*TILESIZE), pygame.
 old_map = [[None for i in range(MAPWIDTH)] for j in range(MAPHEIGHT)]
 
 from tile_ids import tile_ids, entity_ids
+from tile_ids import tile_ids as scaled_tile_ids
+from tile_ids import entity_ids as scaled_entity_ids
+
 while True:
     clock.tick(30)
     #print(screen.get_width()) # 1500
@@ -40,8 +43,14 @@ while True:
             #MAPWIDTH = int(event.w / 30)
             #MAPHEIGHT = int(event.h / 30)
             TILESIZE = min(event.w / MAPWIDTH, event.h / MAPHEIGHT)
+            print(TILESIZE)
+            for k, i in tile_ids.items():
+                scaled_tile_ids[k] = pygame.transform.scale(i, (int(TILESIZE), int(TILESIZE)))
+            for k, i in entity_ids.items():
+                scaled_entity_ids[k] = pygame.transform.scale(i, (int(TILESIZE), int(TILESIZE)))
             screen = pygame.display.set_mode((event.w,event.h), pygame.RESIZABLE)
             dirty_tiles.append(pygame.Rect(0,0, event.w, event.h))
+            old_map = [[None for i in range(MAPWIDTH)] for j in range(MAPHEIGHT)]
 
     tilemap = game.current_level.array
     entitymap = game.current_level.entitylist
@@ -51,9 +60,9 @@ while True:
             #draw the resource at that position in the tilemap, using the correct image
             if tilemap[row][column] != old_map[row][column]:
                 dirty_tiles.append(pygame.Rect(column * TILESIZE, row * TILESIZE, TILESIZE, TILESIZE))
-                screen.blit(tile_ids[tilemap[row][column]], (column*TILESIZE,row*TILESIZE))
+                screen.blit(scaled_tile_ids[tilemap[row][column]], (column*TILESIZE,row*TILESIZE))
             if entitymap[row][column]:
-                screen.blit(entity_ids[entitymap[row][column]], (column*TILESIZE,row*TILESIZE))
+                screen.blit(scaled_entity_ids[entitymap[row][column]], (column*TILESIZE,row*TILESIZE))
                 dirty_tiles.append(pygame.Rect(column * TILESIZE, row * TILESIZE, TILESIZE, TILESIZE))
             count = 0
             #for line in message_log.split('\n'):
