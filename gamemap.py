@@ -29,11 +29,15 @@ class Level(object):
 				h.append("dirt") if random.randint(0,10) == 1 else h.append("grass")
 			self.array.append(h)
 
-		self.print_array()
-
 	def set_entity(self, x, y, entity_id):
 		self.entitylist[y][x] = entity_id
 
+	def move_entity(self, startx, starty, endx, endy):
+		entitylist[endy][endx] = entitylist[startx][starty]
+		entitylist[startx][starty] = None
+		# note that this only supports a 2d entitylist
+		# eventually the entitylist needs to be 3d?
+		# maybe
 
 
 	def print_array(self):
