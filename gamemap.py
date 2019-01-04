@@ -20,14 +20,14 @@ class Level(object):
 		for i in range(self.height):
 			self.entitylist.append(h)
 
-		h = []
-		for i in range(self.width):
-			h.append("dirt") if random.randint(0,10) == 1 else h.append("grass")
 		for i in range(self.height):
+			h = []
+			for j in range(self.width):
+				h.append("dirt") if random.randint(0,10) == 1 else h.append("grass")
 			self.array.append(h)
 
-	def set_entity(self, x, y, entity):
-		self.entitylist[y][x] = entity
+	def set_entity(self, x, y, entity_id):
+		self.entitylist[y][x] = entity_id
 
 	def print_array(self):
 		for h in self.array:
