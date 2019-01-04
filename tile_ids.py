@@ -7,6 +7,6 @@ tile_ids = {
 }
 
 entity_ids = {
-	'dagger'  : pygame.image.load('res/dagger.png').convert(),
-	'guy'  : pygame.image.load('res/guy.png').convert()
+	'dagger'  : pygame.image.load('res/dagger.png').convert_alpha(),
+	'guy'  : pygame.image.load('res/guy.png').convert_alpha()
 }
