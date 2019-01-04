@@ -49,7 +49,7 @@ while True:
     for row in range(MAPHEIGHT):
         for column in range(MAPWIDTH):
             #draw the resource at that position in the tilemap, using the correct image
-            if tilemap[row][column] != old_map[row][column] or True:
+            if tilemap[row][column] != old_map[row][column]:
                 dirty_tiles.append(pygame.Rect(column * TILESIZE, row * TILESIZE, TILESIZE, TILESIZE))
                 screen.blit(tile_ids[tilemap[row][column]], (column*TILESIZE,row*TILESIZE))
             if entitymap[row][column]:
