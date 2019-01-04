@@ -6,7 +6,7 @@ class Game(object):
 	def __init__(self, width, height):
 		self.mapt = Map(width, height)
 
-		self.player = Character("Frank", "thief", width / 2, height / 2)
+		self.player = Character("Frank", "thief", int(width / 2), int(height / 2))
 
 		self.mapt.levels[0].set_entity(self.player.x, self.player.y, self.player)
 
