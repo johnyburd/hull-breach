@@ -16,9 +16,11 @@ class Level(object):
 		h = []
 
 		for i in range(self.width):
-			h.append("dagger")
+			h.append("")
 		for i in range(self.height):
 			self.entitylist.append(h)
+
+		self.set_entity(1,1,"dagger")
 
 		for i in range(self.height):
 			h = []
