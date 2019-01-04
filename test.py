@@ -19,7 +19,7 @@ pygame.init()
 screen = pygame.display.set_mode((MAPWIDTH*TILESIZE,MAPHEIGHT*TILESIZE), pygame.RESIZABLE)
 old_map = [[None for i in range(MAPWIDTH)] for j in range(MAPHEIGHT)]
 
-from tile_ids import tile_ids
+from tile_ids import tile_ids, entity_ids
 while True:
     clock.tick(30)
     #print(screen.get_width()) # 1500
@@ -43,7 +43,8 @@ while True:
             screen = pygame.display.set_mode((event.w,event.h), pygame.RESIZABLE)
             dirty_tiles.append(pygame.Rect(0,0, event.w, event.h))
 
-    tilemap = game.current_level().array
+    tilemap = game.current_level.array
+    entitymap = game.current_level.entitylist
 
     for row in range(MAPHEIGHT):
         for column in range(MAPWIDTH):
@@ -51,6 +52,9 @@ while True:
             if tilemap[row][column] != old_map[row][column] or True:
                 dirty_tiles.append(pygame.Rect(column * TILESIZE, row * TILESIZE, TILESIZE, TILESIZE))
                 screen.blit(tile_ids[tilemap[row][column]], (column*TILESIZE,row*TILESIZE))
+            if entitymap[row][column]:
+                screen.blit(entity_ids[entitymap[row][column]], (column*TILESIZE,row*TILESIZE))
+                dirty_tiles.append(pygame.Rect(column * TILESIZE, row * TILESIZE, TILESIZE, TILESIZE))
             count = 0
             #for line in message_log.split('\n'):
             #    textsurface = myfont.render(line, False, (0, 0, 0))
