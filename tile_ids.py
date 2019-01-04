@@ -5,3 +5,7 @@ tile_ids = {
     'water' : pygame.image.load('res/water.png').convert(),
     'coal'  : pygame.image.load('res/coal.png').convert()
 }
+
+entity_ids = {
+	'dagger'  : pygame.image.load('res/dagger.png').convert()
+}

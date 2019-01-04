@@ -7,6 +7,13 @@ class Game(object):
 		self.mapt = Map(width, height)
 		self.entitylist = []
 
+
+		h = []
+		for i in range(self.width):
+			h.append("dagger")
+		for i in range(self.height):
+			self.array.append(h)
+
 		self.player = Character("Frank", "thief", width / 2, height / 2)
 
 	def entity_at(self, x, y):
